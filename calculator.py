@@ -15,7 +15,30 @@ while True:
         exit()
     else:
         if command[0] == "+":
-            print(add(int(command[1]), int(command[2])))
+            print(add(float(command[1]), float(command[2])))
+
+        elif command[0] == "-":
+            print(subtract(float(command[1]), float(command[2])))
+
+        elif command[0] == "*":
+            print(multiply(float(command[1]), float(command[2])))
+
+        elif command[0] == "/":
+            print(divide(float(command[1]), float(command[2])))
+
+        elif command[0] == "square":
+            print(square(float(command[1])))
+
+        elif command[0] == "cube":
+            print(cube(float(command[1])))
+
+        elif command[0] == "pow":
+            print(power(float(command[1]), float(command[2])))
+
+        elif command[0] == "mod":
+            print(mod(float(command[1]), float(command[2])))
+
+        # break
 
 # def find_function(first):
 #     if first == "+"
