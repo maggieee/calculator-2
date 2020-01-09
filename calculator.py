@@ -4,42 +4,67 @@ Using the arithmetic.py file from Calculator Part 1, create the
 calculator program yourself in this file.
 """
 
-from arithmetic import *
-
+from arithmetic2 import *
 
 # Your code goes here
+def is_valid(input_as_list):
+    """Checks if user input is an operator followed by numbers"""
+    if len(input_as_list) > 1:
+        for item in input_as_list[1:]:
+            if not item.isdigit():
+                print("Please enter number(s) as operands")
+                return False
+    return True
+
+def has_enough_arguments(args):
+    """Checks if a given function has enough arguments"""
+
+    if args[0] in ["+", "-", "*", "/", "pow", "mod"]:
+        if len(args) < 3:
+            print("Operator expects at least two operands. Please enter more numbers after operator.")
+            return False
+    elif args[0] in ["square", "cube"]:
+        if len(args) != 2:
+            print("Operator expects one operand. Please enter one number after operator.")
+            return False
+    return True
+
 while True:
     command = input("> ")
-    command = command.split(" ")
-    if command[0] == "q":
-        exit()
-    else:
-        if command[0] == "+":
-            print(add(float(command[1]), float(command[2])))
+    commands = command.split(" ")
 
-        elif command[0] == "-":
-            print(subtract(float(command[1]), float(command[2])))
+    operator = commands[0]
 
-        elif command[0] == "*":
-            print(multiply(float(command[1]), float(command[2])))
+    if is_valid(commands) and has_enough_arguments(commands):
+        numbers = []
+        for num in commands[1:]:
+            numbers.append(float(num))
 
-        elif command[0] == "/":
-            print(divide(float(command[1]), float(command[2])))
+        if operator == "q":
+            break
+        elif operator == "+":
+            print(add(numbers))
 
-        elif command[0] == "square":
-            print(square(float(command[1])))
+        elif operator == "-":
+            print(subtract(numbers))
 
-        elif command[0] == "cube":
-            print(cube(float(command[1])))
+        elif operator == "*":
+            print(multiply(numbers))
 
-        elif command[0] == "pow":
-            print(power(float(command[1]), float(command[2])))
+        elif operator == "/":
+            print(divide(float(commands[1]), float(commands[2])))
 
-        elif command[0] == "mod":
-            print(mod(float(command[1]), float(command[2])))
+        elif operator == "square":
+            print(square(float(commands[1])))
 
-        # break
+        elif operator == "cube":
+            print(cube(float(commands[1])))
 
-# def find_function(first):
-#     if first == "+"
-#         return 
+        elif operator == "pow":
+            print(power(float(commands[1]), float(commands[2])))
+
+        elif operator == "mod":
+            print(mod(float(commands[1]), float(commands[2])))
+
+        else:
+            print("Please enter a valid operator.")
